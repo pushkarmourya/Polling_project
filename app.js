@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
-const port = 5000;
+const dotenv = require("dotenv");
+dotenv.config();
+const port = process.env.PORT || 5000;
 const mongoclient = require("mongodb").MongoClient;
 const bodyParser = require("body-parser");
 const { ObjectId } = require("mongodb");
@@ -10,8 +12,8 @@ const mongoose = require("mongoose");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs')
-// const url = "mongodb+srv://Pushkar:zA!2@7B5VHz-dev@polling.jj9te.mongodb.net/Polling_db?retryWrites=true&w=majority";
-const url = "mongodb://localhost/27017";
+const url = "mongodb+srv://Pushkar:zA!2@7B5VHz-dev@polling.jj9te.mongodb.net/Polling_db?retryWrites=true&w=majority";
+// const url = "mongodb://localhost/27017";
 
 app.get("/", (req, res) => {
     res.render("../main_page.ejs");
@@ -100,6 +102,8 @@ app.delete("/view_poll/:id", (req, res) => {
         });
     })
 })
+
+
 
 app.listen(port, (err) => {
     if (err) throw err;
