@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .page{
+            background-color: #222426;
+        }
+        .heading_container{
+            text-align: center;
+            margin: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            height: 15vh;
+            background-color: aqua;
+            border-radius: 20px;
+            padding-top: 20px;
+        }
+        .button_container{
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        button{
+            height: 60px;
+            width: 200px;
+            border:none;
+            border-radius: 10px;
+            font-size: large;
+            margin: 10%;
+            background-color: #fcba03;
+            color: white;
+        }
+    </style>
+</head>
+<body  class="page">
+    <div class="heading_container">
+        <h1 class="heading">Make your vote count</h1>
+    </div>
+    <div class="d-flex flex-row justify-content-center button_container">
+        <button onClick="move_to_view_poll_page()">
+            View Poll
+        </button>
+        <button onClick="move_to_make_poll_page()">Make A new Poll</button>
+    </div>
+</body>
+<script>
+    function move_to_make_poll_page(){
+        window.location.href="/make_poll";
+    }
+    function move_to_view_poll_page(){
+        window.location.href="/view_poll";
+    }
+</script>
+</html>

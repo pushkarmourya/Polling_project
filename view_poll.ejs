@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<style>
+    .page {
+        text-align: center;
+        background-color: #222426;
+        color: #f0f8ff;
+    }
+
+    .options {
+        border: solid;
+        border-width: 2px;
+        border-radius: 5px;
+        border-color: aliceblue;
+        font-size: medium;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        padding: 4px;
+    }
+
+    .whole_container {
+        height: auto;
+        width: 80% vw;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .question {
+        font-size: x-large;
+        text-align: left;
+    }
+
+    .trash_icon {
+        height: 40px;
+        text-align: right;
+        width: 30px;
+        margin-top: 9px;
+    }
+
+    .heading {
+        margin-bottom: 20px;
+        color: #c9cc32;
+    }
+    button{
+        border-radius: 5px;
+        margin-top: 5px;
+        background-color:#00ff6a;
+    }
+    .go_back_button{
+        background-color: #3294cc;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body class="page">
+    <diV>
+        <h1 class="heading">vote now!!</h1>
+    </diV>
+    <%for (que of questions) {%>
+        <div class="d-flex flex-column whole_container">
+            <div class="d-flex flex-row justify-content-center">
+                <div class="question">
+                    <p>
+                        <%=que.question%>
+                    </p>
+                </div>
+                <div class="trash_icon " onclick="delete_container('<%=que._id%>')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-trash" viewBox="0 0 16 16">
+                        <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+                <form class="d-flex flex-column option_container">
+                    <div class="options">
+                        <input type="radio" id="<%=que._id%>option1" name="<%=que._id%>option">
+                        <label for="<%=que._id%>option1" class="ml-auto">
+                            <%=que.option1%>
+                        </label>
+                    </div>
+                    <div class="options">
+                        <input type="radio" id="<%=que._id%>option2" name="<%=que._id%>option">
+                        <label for="<%=que._id%>option2" class="ml-auto">
+                            <%=que.option2%>
+                        </label>
+                    </div>
+                    <div class="options">
+                        <input type="radio" id="<%=que._id%>option3" name="<%=que._id%>option">
+                        <label for="<%=que._id%>option3" class="ml-auto">
+                            <%=que.option3%>
+                        </label>
+                    </div>
+                    <div class="options">
+                        <input type="radio" id="<%=que._id%>option4" name="<%=que._id%>option">
+                        <label for="<%=que._id%>option4" class="ml-auto">
+                            <%=que.option4%>
+                        </label>
+                    </div>
+                    <button onclick="submitbutton('<%=que._id%>')">Vote</button>
+
+                </form>
+                <div id="<%=que._id%>piechart">
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+
+                    var data = google.visualization.arrayToDataTable([
+                        ['options', 'votes'],
+                        ["<%=que.option1%>",<%=que["o1"] %>],
+                        ["<%=que.option2%>",<%=que["o2"] %>],
+                        ["<%=que.option3%>",<%=que["o3"] %>],
+                        ["<%=que.option4%>",<%=que["o4"] %>],
+
+                    ]);
+
+                    var options = {
+                        
+                        backgroundColor: "#222426",
+                        is3D: true,
+                        legend: {
+                            textStyle: { color: '#f0f8ff' }
+                        }
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById("<%=que._id%>piechart"));
+
+                    chart.draw(data, options);
+                }
+            </script>
+        </div>
+
+        <%}%>
+            <div>
+                <button onclick="go_back()" class="go_back_button">Go Back</button>
+            </div>
+            <script>
+                function go_back() {
+                    window.location.href = "/";
+                }
+                function delete_container(id) {
+
+                    var answer = confirm("do you want to delete?");
+                    if (answer) {
+                        let options = {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Accept: "application/json",
+                                Authorization: "Bearer ACCESS-TOKEN"
+                            }
+                        };
+                        fetch("/view_poll" + "/" + id, options);
+                        // location.reload();
+                    }
+                }
+                function submitbutton(id) {
+                    var option1 = document.getElementById(id + "option1");
+                    var option2 = document.getElementById(id + "option2");
+                    var option3 = document.getElementById(id + "option3");
+                    var option4 = document.getElementById(id + "option4");
+
+                    var op = null;
+                    if (option1.checked) {
+                        op = 1;
+                    }
+                    else if (option2.checked) {
+                        op = 2;
+                    }
+                    else if (option3.checked) {
+                        op = 3;
+                    }
+                    else if (option4.checked) {
+                        op = 4;
+                    }
+                    else {
+                        alert("Please select an option to vote!")
+                    }
+                    console.log(op);
+                    let options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                            Authorization: "Bearer ACCESS-TOKEN"
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            option: op
+                        })
+                    };
+                    fetch("/view_poll", options);
+                    // location.reload();
+                }
+            </script>
+</body>
+
+</html>

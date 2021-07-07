@@ -1,0 +1,35 @@
+{
+  "name": "poll",
+  "version": "1.0.0",
+  "description": "this website will help solve unresolved question by voting",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushkarmourya/Polling_project.git"
+  },
+  "keywords": [
+    "nodejs",
+    "polling",
+    "express",
+    "mongodb",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Pushkar Mourya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pushkarmourya/Polling_project/issues"
+  },
+  "homepage": "https://github.com/pushkarmourya/Polling_project#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.13.2"
+  }
+}

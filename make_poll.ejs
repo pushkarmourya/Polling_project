@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+    .page {
+        background-color: #222426;
+    }
+
+    .input_container {
+        margin: 30px;
+        margin-left: 10%;
+        margin-right: 10%;
+        font-size: larger;
+        height: 100px;
+        padding: 10px;
+        border-radius: 10px;
+        width: 80wv;
+        background-color: cornflowerblue;
+    }
+    .question-container{
+        background-color: crimson;
+    }
+    .button-container{
+        text-align: center;
+    }
+    button{
+        margin-left: 20px;
+    }
+    .inputs{
+        border-radius: 5px;
+    }
+</style>
+
+<body class="page d-flex flex-column">
+    <form action="/make_poll" method="POST">
+        <div class="input_container question-container">
+            <label for="question">Question</label>
+            <br />
+            <input class="inputs" type="text" id="question" name="question" required="true" placeholder="Type your question here">
+        </div>
+        <div class="input_container">
+            <label for="option1">Option1</label>
+            <br />
+            <input class="inputs" type="text" id="option1" name="option1" required="true" placeholder="Option1">
+        </div>
+        <div class="input_container">
+            <label for="option2">Option2</label>
+            <br />
+            <input class="inputs" type="text" id="option2" name="option2" required="true" placeholder="Option2">
+        </div>
+        <div class="input_container">
+            <label for="option3">Option3</label>
+            <br />
+            <input class="inputs" type="text" id="option3" name="option3" required="true" placeholder="Option3">
+        </div>
+        <div class="input_container">
+            <label for="option4">Option4</label>
+            <br />
+            <input class="inputs" type="text" id="option4" name="option4" required="true" placeholder="Option4">
+        </div>
+        <div class="d-flex flex-row justify-content-center button-container">
+            <button class="btn btn-primary" type="submit" value="submit">Create Poll</button>
+            <button class="btn btn-danger" onClick="go_back()">Cancel</button>
+        </div>
+    </form>
+
+</body>
+
+<script>
+    function go_back() {
+        window.location.href = "/";
+    }
+</script>
+
+</html>
